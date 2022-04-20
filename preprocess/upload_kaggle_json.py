@@ -4,7 +4,7 @@ def upload_kaggle_json():
 
     Usage:
         !git clone https://github.com/Sihan-A/sihan_utils.git
-        from sihan_utils.upload_kaggle_json import upload_kaggle_json
+        from sihan_utils.preprocess.upload_kaggle_json import upload_kaggle_json
         upload_kaggle_json()
         !kaggle datasets download -d berkeleyearth/climate-change-earth-surface-temperature-data
     """
@@ -15,3 +15,4 @@ def upload_kaggle_json():
     os.mkdir("/root/.kaggle")
     os.rename("/content/kaggle.json", "/root/.kaggle/kaggle.json")
     os.chmod("/root/.kaggle/kaggle.json", 600)
+
