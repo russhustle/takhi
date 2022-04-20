@@ -1,6 +1,12 @@
 def upload_kaggle_json():
     """
     Upload kaggle.json to colab environment
+
+    Usage:
+        !git clone https://github.com/Sihan-A/sihan_utils.git
+        from sihan_utils.upload_kaggle_json import upload_kaggle_json
+        upload_kaggle_json()
+        !kaggle datasets download -d berkeleyearth/climate-change-earth-surface-temperature-data
     """
     from google.colab import files
     import os
