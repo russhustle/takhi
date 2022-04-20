@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from torchvision.utils import make_grid
-from normalization import inverse_normalize
+from cv.normalization import inverse_normalize
 
 def imageshow(image):
     """_summary_
@@ -13,6 +13,7 @@ def imageshow(image):
     np_image = image.numpy()
     plt.imshow(np.transpose(np_image, (1,2,0)))
     plt.show()
+
 
 dataiter = iter(trainloader)
 images, labels = dataiter.next()
