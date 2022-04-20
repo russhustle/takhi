@@ -1,4 +1,3 @@
-
 def upload_kaggle_json():
     """ Upload kaggle.json to colab environment
     """
