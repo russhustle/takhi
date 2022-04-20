@@ -1,5 +1,3 @@
-import torch
-
 def get_mean_and_std(dataloader):
     """ Get the mean and standard deviation of a dataloader
     Args:
@@ -7,6 +5,7 @@ def get_mean_and_std(dataloader):
     Returns:
         _type_: _description_
     """
+    import torch
     channels_sum, channels_squared_sum, num_batches = 0, 0, 0
     for data, _ in dataloader:
         # Mean over batch, height and width, but not over the channels
