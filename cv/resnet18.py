@@ -1,7 +1,7 @@
 from torchvision.models import resnet18
 from torch import nn
 
-def create_model(num_classes):
+def create_resnet18(num_classes):
     """ To create a pre-trained resnet18 model 
 
     Returns:
