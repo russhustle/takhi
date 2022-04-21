@@ -15,4 +15,3 @@ def upload_kaggle_json():
     os.mkdir("/root/.kaggle")
     os.rename("/content/kaggle.json", "/root/.kaggle/kaggle.json")
     os.chmod("/root/.kaggle/kaggle.json", 600)
-
