@@ -1,11 +1,15 @@
+import torch
+
 def get_mean_and_std(dataloader):
     """ Get the mean and standard deviation of a dataloader
     Args:
         dataloader (DataLoader): PyTorch DataLoader
+    Imports:
+        import torch
     Returns:
-        _type_: _description_
+       mean: Mean value for each channel.
+       std: Standard deviation for each channel.
     """
-    import torch
     channels_sum, channels_squared_sum, num_batches = 0, 0, 0
     for data, _ in dataloader:
         # Mean over batch, height and width, but not over the channels
@@ -24,6 +28,8 @@ def inverse_normalize(image_tensor, mean, std):
         image_tensor (tensor): image tensor after normalization
         mean (tuple): means of each channel before normalization
         std (tuple): standard deviations of each channel before normalization
+    Imports:
+        import torch
     Returns:
         image_tensor (tensor): image tensor before normalization
     """
