@@ -3,6 +3,7 @@ from torchvision.datasets import CIFAR10
 from torch.utils.data import DataLoader, random_split
 from torchvision.transforms import (Compose, RandomCrop, RandomHorizontalFlip, ToTensor, Normalize)
 import torch
+import os
 
 class CIFAR10DataModule(LightningDataModule):
     
