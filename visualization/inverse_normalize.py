@@ -3,9 +3,9 @@ import torch
 def inverse_normalize(image_tensor, mean, std):
     """ Un-normalization
     Args:
-        image_tensor (tensor): image tensor after normalization
-        mean (tuple): means of each channel before normalization
-        std (tuple): standard deviations of each channel before normalization
+        image_tensor (tensor): image tensor after normalization.
+        mean (tuple): means of each channel before normalization.
+        std (tuple): standard deviations of each channel before normalization.
     Returns:
         image_tensor (tensor): image tensor before normalization
     """

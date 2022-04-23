@@ -4,6 +4,15 @@ from torchvision.utils import make_grid
 from visualization.inverse_normalize import inverse_normalize
 
 def show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None):
+    """ Show sample images in a PyTorch dataloader.
+
+    Args:
+        dataloader (Dataloader): PyTorch dataloader to show.
+        mean (List, optional): Mean value for each channel. Defaults to None.
+        std (List, optional): Standard deviation for each channel. Defaults to None.
+        num_imgs (int, optional): Number of images to show. Defaults to 4.
+        label_classes (Dict, optional): Class dictionary. Defaults to None.
+    """
     dataiter = iter(dataloader)
     images, labels = dataiter.next()
     labels = list(labels[:num_imgs].numpy())
