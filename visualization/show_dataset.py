@@ -1,4 +1,3 @@
-import torch
 import numpy as np
 from torchvision.utils import make_grid
 import matplotlib.pyplot as plt
@@ -20,17 +19,8 @@ def show_dataset(dataset, num_imgs=4, mean=None, std=None, label_classes=None, R
     images_tensor = [dataset[i][0] for i in random_indices]
     images_grid = make_grid(tensor=images_tensor, nrow=num_imgs)
     labels = [dataset[i][1] for i in random_indices]
-    
-    # Un-normalize
     if mean is not None:
-        mean = torch.as_tensor(mean, dtype=images_grid.dtype, device=images_grid.device)
-        std = torch.as_tensor(std, dtype=images_grid.dtype, device=images_grid.device)
-        if mean.ndim == 1:
-            mean = mean.view(-1, 1, 1)
-        if std.ndim == 1:
-            std = std.view(-1, 1, 1)
-        images_grid.mul_(std).add_(mean)
-    
+        images_grid = inverse_normalize(image_tensor=images_grid, mean=mean, std=std)
     images_numpy = images_grid.numpy()
     images_transposed_numpy = np.transpose(images_numpy, axes=(1,2,0))
     plt.figure(figsize=(num_imgs*5, num_imgs*3))
