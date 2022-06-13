@@ -6,10 +6,8 @@ import os
 
 def cifar10_dataloaders(BATCH_SIZE=32):
     """ Load CIFAR10 dataset as train, validation and test dataloaders.
-
     Args:
         BATCH_SIZE (int, optional): Batch size. Defaults to 32.
-
     Returns:
         train_dataloader
         val_dataloader
