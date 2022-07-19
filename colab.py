@@ -1,6 +1,3 @@
-
-from IPython.display import Image
-
 # 1. Mount google drive
 def mount_google_drive():
     from google.colab import drive
@@ -9,6 +6,11 @@ def mount_google_drive():
 # 2. Create a soft link of direcctory in content
 import os
 def dir_soft_link(DIR_PATH, DST_PATH):
+    """ Create a soft link of the working directory.
+    Args:
+        DIR_PATH (str): File position in the google drive.
+        DST_PATH (str): Soft link name.
+    """
     full_dir_path = os.path.join("/content/drive/MyDrive", DIR_PATH)
     full_dst_path = os.path.join("/content", DST_PATH)
     os.symlink(src=full_dir_path, dst=full_dst_path, target_is_directory=True)
