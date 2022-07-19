@@ -67,18 +67,23 @@ def plot_roc_curve(recalls, precisions, fpr, tpr, label=None):
             https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html
     """
     plt.figure(figsize=(8, 6))
-    plt.plot(fpr, tpr, linewidth=2, label=label)
-    plt.plot([0, 1], [0, 1], 'k--')
-    plt.axis([0, 1, 0, 1])
-    plt.xlabel('False Positive Rate (Fall-Out)', fontsize=16)
-    plt.ylabel('True Positive Rate (Recall)', fontsize=16)
-    plt.grid(True)
+
+    # If we want to compare two models' roc curve. Add few lines like this.
+    plt.plot(fpr, tpr, "b-", linewidth=2, label=label) # ROC curve
     recall_90_precision = recalls[np.argmax(precisions >= 0.90)]
     fpr_90 = fpr[np.argmax(tpr >= recall_90_precision)]
     plt.plot([fpr_90, fpr_90], [0., recall_90_precision], "r:")
     plt.plot([0.0, fpr_90], [recall_90_precision, recall_90_precision], "r:")
-    plt.plot([fpr_90], [recall_90_precision], "ro")
-    plt.text(fpr_90+0.02, recall_90_precision, "A", fontsize=14)
-    plt.title(f"ROC Curve. Point A highlights the chosen ratio (when precision=0.9, recall={recall_90_precision:.2f})")
+    plt.plot([fpr_90], [recall_90_precision], "ro") # Red line
+    plt.text(fpr_90+0.02, recall_90_precision, f"A (precision=0.9, recall={recall_90_precision:.2f})") # Point A
+    
+    # General settings
+    plt.plot([0, 1], [0, 1], 'k--') # diagonal line: random classifier
+    plt.axis([0, 1, 0, 1])
+    plt.legend()
+    plt.xlabel('False Positive Rate (Fall-Out)', fontsize=16)
+    plt.ylabel('True Positive Rate (Recall)', fontsize=16)
+    plt.grid(True)
+    plt.title(f"ROC Curve. Point A highlights the chosen ratio")
     plt.show()
 
