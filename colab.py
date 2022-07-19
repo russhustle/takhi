@@ -1,18 +1,23 @@
+
+from IPython.display import Image
+
 # 1. Mount google drive
-from google.colab import drive
-drive.mount('/content/drive')
+def mount_google_drive():
+    from google.colab import drive
+    drive.mount('/content/drive')
 
 # 2. Create a soft link of direcctory in content
 import os
-DIR_PATH = "/content/drive/MyDrive/02-udemy/udemy-ds-ml-bootcamp/17-K-Means-Clustering"
-DST_PATH = "/content/KMEANS"
-os.symlink(src=DIR_PATH, dst=DST_PATH, target_is_directory=True)
-os.chdir('/content')
+def dir_soft_link(DIR_PATH, DST_PATH):
+    full_dir_path = os.path.join("/content/drive/MyDrive", DIR_PATH)
+    full_dst_path = os.path.join("/content", DST_PATH)
+    os.symlink(src=full_dir_path, dst=full_dst_path, target_is_directory=True)
+    os.chdir('/content')
 
 # 3. Show an image in colab
-from IPython.display import Image
-PCA_PATH = os.path.join(DST_PATH, 'images/PCA.png')
-Image(PCA_PATH)
+def colab_show_image(PATH):
+    from IPython.display import Image
+    Image(PATH)
 
 # 4. Upload kaggle.json to colab
 def upload_kaggle_json():
