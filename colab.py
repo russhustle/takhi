@@ -15,10 +15,6 @@ PCA_PATH = os.path.join(DST_PATH, 'images/PCA.png')
 Image(PCA_PATH)
 
 # 4. Upload kaggle.json to colab
-
-from google.colab import files
-import os
-
 def upload_kaggle_json():
     """ Upload kaggle.json to colab environment
     Usage:
@@ -27,6 +23,8 @@ def upload_kaggle_json():
         upload_kaggle_json()
         !kaggle datasets download -d berkeleyearth/climate-change-earth-surface-temperature-data
     """
+    from google.colab import files
+    import os
     os.chdir("/content")
     files.upload()
     os.mkdir("/root/.kaggle")
