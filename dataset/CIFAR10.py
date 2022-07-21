@@ -6,39 +6,19 @@ from pytorch_lightning import LightningDataModule
 import os
 
 cifar10_label_classes = {
-    0: "airplane",
-    1: "automobile",
-    2: "bird",
-    3: "cat",
-    4: "deer",
-    5: "dog",
-    6: "frog",
-    7: "horse",
-    8: "ship",
-    9: "truck",
-}
+    0: "airplane", 1: "automobile", 2: "bird", 3: "cat", 4: "deer",
+    5: "dog", 6: "frog", 7: "horse", 8: "ship", 9: "truck",}
 cifar10_mean=[0.49139968, 0.48215841, 0.44653091]
 cifar10_std =[0.24703223, 0.24348513, 0.26158784]
 num_workers = int(os.cpu_count()/2)
 
-def cifar10_dataloaders(BATCH_SIZE=32):
-    """ Load CIFAR10 dataset as train, validation and test dataloaders.
-    Args:
-        BATCH_SIZE (int, optional): Batch size. Defaults to 32.
-    Returns:
-        train_dataloader
-        val_dataloader
-        test_dataloader
-    """
-    train_transform = Compose([
-        RandomCrop(32, padding=4), RandomHorizontalFlip(), ToTensor(),
-        Normalize(mean=cifar10_mean, std=cifar10_std),
-        ])
-    val_test_transform = Compose([
-        ToTensor(), Normalize(mean=cifar10_mean, std=cifar10_std),
-        ])
-    
-    # Datasets
+train_transform = Compose([
+    RandomCrop(32, padding=4), RandomHorizontalFlip(), ToTensor(),
+    Normalize(mean=cifar10_mean, std=cifar10_std),])
+val_test_transform = Compose([
+    ToTensor(), Normalize(mean=cifar10_mean, std=cifar10_std),])
+
+def cifar10_datasets():
     train_dataset = CIFAR10(root=os.getcwd(), train=True, download=True, transform=train_transform)
     val_length = 5000
     train_length = len(train_dataset)-val_length
@@ -48,8 +28,10 @@ def cifar10_dataloaders(BATCH_SIZE=32):
     val_dataset = CIFAR10(root=os.getcwd(), train=True, download=True, transform=val_test_transform)
     _, val_dataset = random_split(dataset=val_dataset, lengths=lengths, generator=generator)
     test_dataset = CIFAR10(root=os.getcwd(), train=False, download=False, transform=val_test_transform)
-    
-    # Dataloaders
+    return train_dataset, val_dataset, test_dataset
+
+def cifar10_dataloaders(BATCH_SIZE=32):
+    train_dataset, val_dataset, test_dataset = cifar10_datasets()
     train_dataloader = DataLoader(
         dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=True,
         num_workers=num_workers, drop_last=True, pin_memory=True,)
