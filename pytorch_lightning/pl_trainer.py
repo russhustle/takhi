@@ -16,5 +16,6 @@ trainer = Trainer(
     logger=logger,
     callbacks=callbacks,
 )
-trainer.fit(model, datamodule)
+trainer.fit(model, datamodule=datamodule)
 trainer.test(model, datamodule=datamodule)
+
