@@ -6,6 +6,8 @@ from torchvision.utils import make_grid
 """
 - inverse_normalize
 - show_dataset_dataloader
+- show_dataloader
+- show_dataset
 - make_grid_dataloader
 - make_grid_dataset
 - show_tensor
@@ -81,8 +83,3 @@ def show_tensor(tensor):
     array_transposed = np.transpose(a=array, axes=(1,2,0))
     plt.axis("off")
     plt.imshow(array_transposed)
-
-
-
-
-
