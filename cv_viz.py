@@ -25,9 +25,9 @@ def inverse_normalize(image_tensor, mean, std):
 
 def show_dataset_dataloader(data, datatype="dataloader", mean=None, std=None, num_imgs=4, label_classes=None):
     if datatype == "dataloader":
-        images_grid, labels = make_grid_dataloader(data, num_imgs, label_classes)
+        images_grid, labels = make_grid_dataloader(data, num_imgs=num_imgs, label_classes=label_classes)
     if datatype == "dataset":
-        images_grid, labels = make_grid_dataset(data, num_imgs, label_classes)
+        images_grid, labels = make_grid_dataset(data, num_imgs=num_imgs, label_classes=label_classes)
     if mean is not None:
         images_grid = inverse_normalize(images_grid, mean, std)
     images_numpy = images_grid.numpy()
@@ -75,7 +75,7 @@ def make_grid_dataset(dataset, num_imgs=4, label_classes=None, RANDOM_SEED=42):
     labels = [dataset[i][1] for i in random_indices]
     if label_classes is not None:
         labels = [label_classes[i] for i in labels]
-    images_grid = make_grid(tensor=images_tensor, nrow=dataset)
+    images_grid = make_grid(tensor=images_tensor, nrow=num_imgs)
     return images_grid, labels
 
 def show_tensor(tensor):
