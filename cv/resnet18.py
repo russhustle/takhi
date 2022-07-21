@@ -3,7 +3,6 @@ from torch import nn
 
 def create_resnet18(num_classes):
     """ To create a pre-trained resnet18 model 
-
     Returns:
         model: A pre-trained resnet18 model
     """
