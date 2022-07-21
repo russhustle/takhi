@@ -8,7 +8,7 @@ This is my utils codes that I use on a daily basis.
 - `plot_precision_vs_recall`
 - `plot_roc_curve`
 
-`cv_viz`:
+`cv_viz.py`:
 - `inverse_normalize`
 - `show_dataset_dataloader`
 - `show_dataloader`
