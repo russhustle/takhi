@@ -70,3 +70,10 @@ def show_tensor(tensor):
     plt.axis("off")
     plt.imshow(array_transposed)
 
+def show_image_tensor_label(image_tensor, label, label_classes=None, mean=None, std=None):
+    if mean is not None:
+        image_tensor = inverse_normalize(image_tensor, mean=mean, std=std)
+    plt.title(f"Label: {label}" if label_classes is None else label_classes[label])
+    show_tensor(image_tensor)
+
+
