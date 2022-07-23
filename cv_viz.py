@@ -5,12 +5,13 @@ from torchvision.utils import make_grid
 
 """
 - inverse_normalize
-- show_dataset_dataloader
-- show_dataloader
-- show_dataset
-- make_grid_dataloader
 - make_grid_dataset
+- make_grid_dataloader
+- show_dataset
+- show_dataloader
 - show_tensor
+- def show_image_tensor_label
+- show_conv2d_filters
 """
 
 def inverse_normalize(image_tensor, mean, std):
@@ -42,27 +43,21 @@ def make_grid_dataloader(dataloader, num_imgs=4, label_classes=None):
     images_grid = make_grid(images[:num_imgs])
     return images_grid, labels
 
-def show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None):
-    images_grid, labels = make_grid_dataloader(dataloader, num_imgs, label_classes)
-    if mean is not None:
-        images_grid = inverse_normalize(images_grid, mean, std)
-    images_numpy = images_grid.numpy()
-    images_transposed_numpy = np.transpose(images_numpy, axes=(1,2,0))
-    plt.figure(figsize=(num_imgs*5, num_imgs*3))
-    plt.axis("off")
-    plt.title(f"Label: {labels}")
-    plt.imshow(images_transposed_numpy)
-
 def show_dataset(dataset, num_imgs=4, mean=None, std=None, label_classes=None):
     images_grid, labels = make_grid_dataset(dataset, num_imgs=num_imgs, label_classes=label_classes)
     if mean is not None:
         images_grid = inverse_normalize(image_tensor=images_grid, mean=mean, std=std)
-    images_numpy = images_grid.numpy()
-    images_transposed_numpy = np.transpose(images_numpy, axes=(1,2,0))
-    plt.figure(figsize=(num_imgs*5, num_imgs*3))
-    plt.axis("off")
     plt.title(f"Label: {labels}")
-    plt.imshow(images_transposed_numpy)
+    plt.figure(figsize=(num_imgs*5, num_imgs*3))
+    show_tensor(images_grid)
+
+def show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None):
+    images_grid, labels = make_grid_dataloader(dataloader, num_imgs, label_classes)
+    if mean is not None:
+        images_grid = inverse_normalize(images_grid, mean, std)
+    plt.title(f"Label: {labels}")
+    plt.figure(figsize=(num_imgs*5, num_imgs*3))
+    show_tensor(images_grid)
 
 def show_tensor(tensor):
     array = tensor.numpy()
@@ -75,5 +70,18 @@ def show_image_tensor_label(image_tensor, label, label_classes=None, mean=None, 
         image_tensor = inverse_normalize(image_tensor, mean=mean, std=std)
     plt.title(f"Label: {label}" if label_classes is None else label_classes[label])
     show_tensor(image_tensor)
+
+def show_conv2d_filters(weights):
+    # Normalize
+    min_weight = torch.min(weights)
+    weights_normalized = (-1/(2*min_weight))*weights + 0.5
+    # Make grid
+    grid_size=len(weights_normalized)
+    weights_list = [weights_normalized[i] for i in range(grid_size)]
+    weights_grid = make_grid(tensor=weights_list, nrow=8, padding=1)
+    print(f"Weight grid shape: {weights_grid.shape}")
+    # Visualization
+    plt.figure(figsize=(10,10))
+    show_tensor(weights_grid)
 
 
