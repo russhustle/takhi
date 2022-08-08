@@ -31,7 +31,7 @@ callbacks = [checkpoint_callback, progress_bar, early_stopping, lr_monitor]
 Loggers
 ---
 
-### Tensorboard
+### TensorBoard
 
 ```python
 from pytorch_lightning.loggers import TensorBoardLogger
