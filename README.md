@@ -1,4 +1,4 @@
-# sihan-utils
+# Utils for Data Science projects
 
 This is my utils codes that I use on a daily basis.
 
