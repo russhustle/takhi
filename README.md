@@ -1,4 +1,4 @@
-# Utils for Data Science projects
+# Utils for Data Science Projects
 
 This is my utils codes that I use on a daily basis.
 
