@@ -5,14 +5,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 """
-1. Log feature importance
-2. Log learning curve
-3. Log confusion matrix
-4. Log summary metrics
-5. Log class proportions
-5. Log calibration curve
-6. Log roc curve
-7. Log precision recall curve
+- Feature importance
+- Learning curve
+- Confusion matrix
+- Summary metrics
+- Class proportions
+- Calibration curve
+- ROC curve
+- Precision recall curve
+
+Four steps: login, dataset, model, and wandb.
 """
 
 # 1. Login
