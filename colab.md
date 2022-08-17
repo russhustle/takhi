@@ -1,6 +1,8 @@
 Colab toolkit
 ===
 
+[TOC]
+
 Mount google drive in Colab
 ---
 
@@ -42,5 +44,12 @@ files.upload()
 os.mkdir("/root/.kaggle")
 os.rename("/content/kaggle.json", "/root/.kaggle/kaggle.json")
 os.chmod("/root/.kaggle/kaggle.json", 600)
+```
+
+GPU information
+---
+
+```bash
+!nvidia-smi
 ```
 
