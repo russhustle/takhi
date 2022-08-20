@@ -18,7 +18,7 @@ train_transform = Compose([
 val_test_transform = Compose([
     ToTensor(), Normalize(mean=cifar10_mean, std=cifar10_std),])
 
-def cifar10_datasets():
+def datasets():
     train_dataset = CIFAR10(root=os.getcwd(), train=True, download=True, transform=train_transform)
     val_length = 5000
     train_length = len(train_dataset)-val_length
@@ -30,8 +30,12 @@ def cifar10_datasets():
     test_dataset = CIFAR10(root=os.getcwd(), train=False, download=False, transform=val_test_transform)
     return train_dataset, val_dataset, test_dataset
 
-def cifar10_dataloaders(BATCH_SIZE=32):
-    train_dataset, val_dataset, test_dataset = cifar10_datasets()
+def dataloaders(BATCH_SIZE=32):
+    """
+    from takhi.dataset.cifar10 import dataloaders
+    train_dataloader, val_dataloader, test_dataloader = dataloaders()
+    """
+    train_dataset, val_dataset, test_dataset = datasets()
     train_dataloader = DataLoader(
         dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=True,
         num_workers=num_workers, drop_last=True, pin_memory=True,)
@@ -41,7 +45,6 @@ def cifar10_dataloaders(BATCH_SIZE=32):
     test_dataloader = DataLoader(
         dataset=test_dataset, batch_size=BATCH_SIZE, shuffle=False,
         num_workers=num_workers, drop_last=True, pin_memory=True,)
-    
     return train_dataloader, val_dataloader, test_dataloader
 
 class CIFAR10DataModule(LightningDataModule):
