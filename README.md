@@ -3,8 +3,8 @@
 This is my utils codes that I use on a daily basis.
 
 ```python
-%capture
-%git clone https://github.com/Sihan-A/takhi.git
+%%capture
+!git clone https://github.com/Sihan-A/takhi.git
 ```
 
 `evaluate.py`:

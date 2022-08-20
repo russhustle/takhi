@@ -47,16 +47,16 @@ def show_dataset(dataset, num_imgs=4, mean=None, std=None, label_classes=None):
     images_grid, labels = make_grid_dataset(dataset, num_imgs=num_imgs, label_classes=label_classes)
     if mean is not None:
         images_grid = inverse_normalize(image_tensor=images_grid, mean=mean, std=std)
-    plt.title(f"Label: {labels}")
     plt.figure(figsize=(num_imgs*5, num_imgs*3))
+    plt.title(f"Labels: {labels}")
     show_tensor(images_grid)
 
 def show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None):
     images_grid, labels = make_grid_dataloader(dataloader, num_imgs, label_classes)
     if mean is not None:
         images_grid = inverse_normalize(images_grid, mean, std)
-    plt.title(f"Label: {labels}")
     plt.figure(figsize=(num_imgs*5, num_imgs*3))
+    plt.title(f"Labels: {labels}")
     show_tensor(images_grid)
 
 def show_tensor(tensor):
@@ -66,6 +66,7 @@ def show_tensor(tensor):
     plt.imshow(array_transposed)
 
 def show_image_tensor_label(image_tensor, label, label_classes=None, mean=None, std=None):
+    # Show an iamge tensor with label
     if mean is not None:
         image_tensor = inverse_normalize(image_tensor, mean=mean, std=std)
     plt.title(f"Label: {label}" if label_classes is None else label_classes[label])
@@ -83,5 +84,3 @@ def show_conv2d_filters(weights):
     # Visualization
     plt.figure(figsize=(10,10))
     show_tensor(weights_grid)
-
-
