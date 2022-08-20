@@ -18,7 +18,7 @@ train_transform = Compose([
 val_test_transform = Compose([
     ToTensor(), Normalize(mean=cifar10_mean, std=cifar10_std),])
 
-def datasets():
+def cifar10_datasets():
     train_dataset = CIFAR10(root=os.getcwd(), train=True, download=True, transform=train_transform)
     val_length = 5000
     train_length = len(train_dataset)-val_length
@@ -30,10 +30,10 @@ def datasets():
     test_dataset = CIFAR10(root=os.getcwd(), train=False, download=False, transform=val_test_transform)
     return train_dataset, val_dataset, test_dataset
 
-def dataloaders(BATCH_SIZE=32):
+def cifar10_dataloaders(BATCH_SIZE=32):
     """
-    from takhi.dataset.cifar10 import dataloaders
-    train_dataloader, val_dataloader, test_dataloader = dataloaders()
+    from takhi.dataset.cifar10 import cifar10_dataloaders
+    train_dataloader, val_dataloader, test_dataloader = cifar10_dataloaders()
     """
     train_dataset, val_dataset, test_dataset = datasets()
     train_dataloader = DataLoader(
