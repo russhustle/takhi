@@ -14,6 +14,19 @@ from torchvision.utils import make_grid
 - show_conv2d_filters
 """
 
+def show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None):
+    """
+    from takhi.cv.viz import show_dataloader
+    show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None)
+    """
+    images_grid, labels = make_grid_dataloader(dataloader, num_imgs, label_classes)
+    if mean is not None:
+        images_grid = inverse_normalize(images_grid, mean, std)
+    plt.figure(figsize=(num_imgs*5, num_imgs*3))
+    plt.title(f"Labels: {labels}")
+    show_tensor(images_grid)
+
+
 def inverse_normalize(image_tensor, mean, std):
     mean = torch.as_tensor(mean, dtype=image_tensor.dtype, device=image_tensor.device)
     std = torch.as_tensor(std, dtype=image_tensor.dtype, device=image_tensor.device)
@@ -51,13 +64,6 @@ def show_dataset(dataset, num_imgs=4, mean=None, std=None, label_classes=None):
     plt.title(f"Labels: {labels}")
     show_tensor(images_grid)
 
-def show_dataloader(dataloader, mean=None, std=None, num_imgs=4, label_classes=None):
-    images_grid, labels = make_grid_dataloader(dataloader, num_imgs, label_classes)
-    if mean is not None:
-        images_grid = inverse_normalize(images_grid, mean, std)
-    plt.figure(figsize=(num_imgs*5, num_imgs*3))
-    plt.title(f"Labels: {labels}")
-    show_tensor(images_grid)
 
 def show_tensor(tensor):
     array = tensor.numpy()
