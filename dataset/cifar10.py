@@ -5,9 +5,25 @@ import torch
 from pytorch_lightning import LightningDataModule
 import os
 
+"""
+- cifar10_datasets
+- cifar10_dataloaders
+- CIFAR10DataModule
+"""
+
 cifar10_label_classes = {
-    0: "airplane", 1: "automobile", 2: "bird", 3: "cat", 4: "deer",
-    5: "dog", 6: "frog", 7: "horse", 8: "ship", 9: "truck",}
+    0: "airplane",
+    1: "automobile", 
+    2: "bird", 
+    3: "cat", 
+    4: "deer",
+    5: "dog", 
+    6: "frog", 
+    7: "horse", 
+    8: "ship", 
+    9: "truck",
+}
+
 cifar10_mean=[0.49139968, 0.48215841, 0.44653091]
 cifar10_std =[0.24703223, 0.24348513, 0.26158784]
 num_workers = int(os.cpu_count()/2)
@@ -46,6 +62,8 @@ def cifar10_dataloaders(BATCH_SIZE=32):
         dataset=test_dataset, batch_size=BATCH_SIZE, shuffle=False,
         num_workers=num_workers, drop_last=True, pin_memory=True,)
     return train_dataloader, val_dataloader, test_dataloader
+
+
 
 class CIFAR10DataModule(LightningDataModule):
     
