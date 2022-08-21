@@ -51,7 +51,7 @@ def cifar10_dataloaders(BATCH_SIZE=32):
     from takhi.dataset.cifar10 import cifar10_dataloaders
     train_dataloader, val_dataloader, test_dataloader = cifar10_dataloaders()
     """
-    train_dataset, val_dataset, test_dataset = datasets()
+    train_dataset, val_dataset, test_dataset = cifar10_datasets()
     train_dataloader = DataLoader(
         dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=True,
         num_workers=num_workers, drop_last=True, pin_memory=True,)
