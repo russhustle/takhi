@@ -59,10 +59,11 @@ GPU information
 !nvidia-smi
 ```
 
-Delete all Markdown cells [[link-1](https://stackoverflow.com/questions/57113816/how-to-delete-all-markdown-cells-in-jupyter-notebook), [link-2](https://discourse.jupyter.org/t/delete-all-code-cells-except-markdown-text/3072?u=fomightez)]
+Delete all Markdown or Code cells
 ---
 
-- [nbformat](https://nbformat.readthedocs.io/en/latest/api.html): Python API for working with notebook files
+- Reference: [[link-1](https://stackoverflow.com/questions/57113816/how-to-delete-all-markdown-cells-in-jupyter-notebook), [link-2](https://discourse.jupyter.org/t/delete-all-code-cells-except-markdown-text/3072?u=fomightez)]
+- [`nbformat`](https://nbformat.readthedocs.io/en/latest/api.html): Python API for working with notebook files
 
 ```python
 import nbformat as nbf
