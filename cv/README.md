@@ -1,12 +1,14 @@
 Visualization for Computer Vision
 ===
 
+**Content**
+
 1. Show PyTorch dataloaders
 
 Show PyTorch dataloaders
 ---
 
-1. Weights & Biases [[link](https://docs.wandb.ai/ref/python/data-types/image)]
+1. Method 1: W&B [[link](https://docs.wandb.ai/ref/python/data-types/image)]
 
 ```python
 import wandb
@@ -19,5 +21,5 @@ wandb.Image(xs[idx]).image
 
 This will show one sample, if we want to show several images at the same time, we should make a tensor grid first (`make_grid_dataloader` [[link](https://github.com/Sihan-A/takhi/blob/main/cv/viz.py)]).
 
-2. `show_dataloader` [[link](https://github.com/Sihan-A/takhi/blob/main/cv/viz.py)]
+2. Method 2: `show_dataloader` [[link](https://github.com/Sihan-A/takhi/blob/main/cv/viz.py)]
 
