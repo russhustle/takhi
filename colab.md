@@ -8,6 +8,7 @@ Colab & Jupyter toolkit
 5. GPU information
 6. Delete all Markdown or Code cells
 7. Delete empty lines
+8. Inspect a function
 
 Mount google drive in Colab
 ---
@@ -76,10 +77,30 @@ nbf.write(new_ntbk, "no_markdown_notebook.ipynb", version=nbf.NO_CONVERT)
 - Delete markdown: `!= "markdown"` @ line 4
 - Delete code: `== "markdown"` @ line 4
 
-Delete empty lines [[link](https://www.youtube.com/watch?v=jQrET5HYyAE)]
+Delete empty lines
 ---
+
+- Reference: [[link](https://www.youtube.com/watch?v=jQrET5HYyAE)]
 
 1. In VS code, install extension `Remove empty lines`.
 2. Add shortcut to remove all empty lines in document; mine is `cmd+h`.
 3. In the cell, type the shortcut.
 
+Inspect a function
+---
+
+- Reference: [[link](https://stackoverflow.com/questions/1562759/can-python-print-a-function-definition)]
+
+Method 1
+
+```python
+import sys, inspect
+print_func = lambda x: sys.stdout.write(inspect.getsource(x))
+print_func(MyFunction)
+```
+
+Method 2
+
+```python
+MyFunction??
+```
