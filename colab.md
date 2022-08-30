@@ -9,6 +9,7 @@ Colab & Jupyter toolkit
 6. Delete all Markdown or Code cells
 7. Delete empty lines
 8. Inspect a function
+9. Convert Jupyter notebook into other formats
 
 Mount google drive in Colab
 ---
@@ -103,4 +104,13 @@ Method 2
 
 ```python
 MyFunction??
+```
+
+Convert Jupyter notebook into other formats
+---
+
+- [nbconvert](https://nbconvert.readthedocs.io/en/latest/)
+
+```shell
+ jupyter nbconvert --to FORMAT notebook.ipynb
 ```
