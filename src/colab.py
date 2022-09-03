@@ -1,8 +1,9 @@
 from google.colab import files
 import os
 
+
 def kaggle_json_upload():
-    """ To upload the kaggle.json to use the kaggle dataset in colab
+    """To upload the kaggle.json to use the kaggle dataset in colab
     Usage:
         from takhi.colab import kaggle_json_upload
         kaggle_json_upload()

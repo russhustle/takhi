@@ -1,7 +1,8 @@
 import numpy as np
 
+
 def findConv2dOutShape(H_in, W_in, conv, pool=2):
-    """ Find out the shape of Conv2D output shape
+    """Find out the shape of Conv2D output shape
 
     Args:
         H_in (int): _description_
@@ -18,11 +19,19 @@ def findConv2dOutShape(H_in, W_in, conv, pool=2):
     dilation = conv.dilation
 
     # Ref: https://pytorch.org/docs/stable/nn.html
-    H_out = np.floor((H_in+2*padding[0]-dilation[0]*(kernel_size[0]-1)-1)/stride[0]+1)
-    W_out = np.floor((W_in+2*padding[1]-dilation[1]*(kernel_size[1]-1)-1)/stride[1]+1)
+    H_out = np.floor(
+        (H_in + 2 * padding[0] - dilation[0] * (kernel_size[0] - 1) - 1)
+        / stride[0]
+        + 1
+    )
+    W_out = np.floor(
+        (W_in + 2 * padding[1] - dilation[1] * (kernel_size[1] - 1) - 1)
+        / stride[1]
+        + 1
+    )
 
     if pool:
         H_out /= pool
         W_out /= pool
-    
+
     return int(H_out), int(W_out)

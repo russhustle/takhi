@@ -24,7 +24,9 @@ wandb.login()
 wbcd = wisconsin_breast_cancer_data = datasets.load_breast_cancer()
 feature_names = wbcd.feature_names
 labels = wbcd.target_names
-X_train, X_test, y_train, y_test = train_test_split(wbcd.data, wbcd.target, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(
+    wbcd.data, wbcd.target, test_size=0.2
+)
 
 # 3. Train model, get predictions
 model = RandomForestClassifier()
@@ -35,14 +37,17 @@ importances = model.feature_importances_
 indices = np.argsort(importances)[::-1]
 
 # 4. Wandb
-run = wandb.init(project='sklearn-trial', name="classification")
+run = wandb.init(project="sklearn-trial", name="classification")
 wandb.sklearn.plot_classifier(
-    model, 
-    X_train, X_test, 
-    y_train, y_test, 
-    y_pred, y_probas, 
-    labels, 
-    is_binary=True, 
-    model_name='RandomForest',
+    model,
+    X_train,
+    X_test,
+    y_train,
+    y_test,
+    y_pred,
+    y_probas,
+    labels,
+    is_binary=True,
+    model_name="RandomForest",
 )
 wandb.finish()

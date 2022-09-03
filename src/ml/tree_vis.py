@@ -13,12 +13,12 @@ clf = clf.fit(X, y)
 # Visualize the decision tree
 dot_data = tree.export_graphviz(
     decision_tree=clf,
-    out_file=None, 
-    feature_names=iris.feature_names,  
-    class_names=iris.target_names,  
+    out_file=None,
+    feature_names=iris.feature_names,
+    class_names=iris.target_names,
     filled=True,
-    rounded=True,  
+    rounded=True,
     special_characters=True,
-)  
-graph = graphviz.Source(dot_data)  
+)
+graph = graphviz.Source(dot_data)
 graph
