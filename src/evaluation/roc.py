@@ -31,11 +31,7 @@ def plot_roc_curve(recalls, precisions, fpr, tpr, label=None):
     plt.plot([fpr_90, fpr_90], [0.0, recall_90_precision], "r:")
     plt.plot([0.0, fpr_90], [recall_90_precision, recall_90_precision], "r:")
     plt.plot([fpr_90], [recall_90_precision], "ro")  # Red line
-    plt.text(
-        fpr_90 + 0.02,
-        recall_90_precision,
-        f"A (precision=0.9, recall={recall_90_precision:.2f})",
-    )  # Point A
+    plt.text(fpr_90 + 0.02, recall_90_precision, f"A (precision=0.9, recall={recall_90_precision:.2f})",)  # Point A
 
     # General settings
     plt.plot([0, 1], [0, 1], "k--")  # diagonal line: random classifier
