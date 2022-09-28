@@ -25,7 +25,5 @@ y_pred = reg.predict(X_test)
 
 # 4. Wandb
 run = wandb.init(project="sklearn-trial", name="regression")
-wandb.sklearn.plot_regressor(
-    reg, X_train, X_test, y_train, y_test, model_name="Ridge"
-)
+wandb.sklearn.plot_regressor(reg, X_train, X_test, y_train, y_test, model_name="Ridge")
 wandb.finish()
