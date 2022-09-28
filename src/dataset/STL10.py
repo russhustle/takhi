@@ -32,9 +32,7 @@ def stl10_datasets_dataloaders(data="datasets", BATCH_SIZE=32, RANDOM_SEED=42):
             Normalize(mean=train_mean, std=train_std),
         ]
     )
-    val_test_transform = Compose(
-        [ToTensor(), Normalize(mean=val_test_mean, std=val_test_std)]
-    )
+    val_test_transform = Compose([ToTensor(), Normalize(mean=val_test_mean, std=val_test_std)])
 
     train_dataset = STL10(
         root=os.getcwd(),
@@ -51,9 +49,7 @@ def stl10_datasets_dataloaders(data="datasets", BATCH_SIZE=32, RANDOM_SEED=42):
 
     indices = list(range(len(test_dataset_full)))
     test_dataset_labels = [y for _, y in test_dataset_full]
-    sss = StratifiedShuffleSplit(
-        n_splits=1, test_size=0.2, random_state=RANDOM_SEED
-    )
+    sss = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=RANDOM_SEED)
     for test_index, val_index in sss.split(indices, test_dataset_labels):
         print("Stratified shuffle sampling...")
 
