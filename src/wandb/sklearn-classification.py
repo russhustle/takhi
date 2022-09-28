@@ -24,9 +24,7 @@ wandb.login()
 wbcd = wisconsin_breast_cancer_data = datasets.load_breast_cancer()
 feature_names = wbcd.feature_names
 labels = wbcd.target_names
-X_train, X_test, y_train, y_test = train_test_split(
-    wbcd.data, wbcd.target, test_size=0.2
-)
+X_train, X_test, y_train, y_test = train_test_split(wbcd.data, wbcd.target, test_size=0.2)
 
 # 3. Train model, get predictions
 model = RandomForestClassifier()
