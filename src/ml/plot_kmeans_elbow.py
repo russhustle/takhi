@@ -18,13 +18,13 @@ def kmeans_elbow_plot(data, num=(1, 10)):
     np.random.seed(42)
     distortions = []
     K = range(num[0], num[1])
-    
+
     # model training
     for k in K:
         kmeanModel = KMeans(n_clusters=k)
         kmeanModel.fit(data)
         distortions.append(kmeanModel.inertia_)
-    
+
     # plot
     plt.figure(figsize=(8, 4))
     plt.plot(K, distortions, "bx-")
