@@ -36,11 +36,7 @@ def reshape_images(image_path, output_path, shape):
                 image = reshape_image(image, shape)
                 image.save(os.path.join(output_path, image), image.format)
         if (i + 1) % 100 == 0:
-            print(
-                "[{}/{}] Resized the images and saved into '{}'.".format(
-                    i + 1, num_image, output_path
-                )
-            )
+            print("[{}/{}] Resized the images and saved into '{}'.".format(i + 1, num_image, output_path))
 
 
 image_path = "./data_dir/train2014/"
