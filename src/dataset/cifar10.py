@@ -51,25 +51,20 @@ val_test_transform = Compose(
 
 
 def cifar10_datasets():
-    train_dataset = CIFAR10(
-        root=os.getcwd(), train=True, download=True, transform=train_transform
-    )
+    """CIFAR10 train, val, test datasets"""
+    train_dataset = CIFAR10(root=os.getcwd(), train=True, download=True, transform=train_transform)
     val_length = 5000
     train_length = len(train_dataset) - val_length
     lengths = [train_length, val_length]
     generator = torch.Generator().manual_seed(42)
-    train_dataset, _ = random_split(
-        dataset=train_dataset, lengths=lengths, generator=generator
-    )
+    train_dataset, _ = random_split(dataset=train_dataset, lengths=lengths, generator=generator)
     val_dataset = CIFAR10(
         root=os.getcwd(),
         train=True,
         download=True,
         transform=val_test_transform,
     )
-    _, val_dataset = random_split(
-        dataset=val_dataset, lengths=lengths, generator=generator
-    )
+    _, val_dataset = random_split(dataset=val_dataset, lengths=lengths, generator=generator)
     test_dataset = CIFAR10(
         root=os.getcwd(),
         train=False,
@@ -113,6 +108,8 @@ def cifar10_dataloaders(BATCH_SIZE=32):
 
 
 class CIFAR10DataModule(LightningDataModule):
+    """Easy usage of CIFAR10 Data module"""
+
     def __init__(
         self,
         data_dir: str = None,
@@ -131,6 +128,7 @@ class CIFAR10DataModule(LightningDataModule):
         self.seed = seed
 
     def prepare_data(self):
+        """prepare"""
         self.DATASET(
             self.data_dir,
             train=True,
@@ -145,6 +143,7 @@ class CIFAR10DataModule(LightningDataModule):
         )
 
     def train_dataloader(self):
+        """train"""
         transforms = Compose(
             [
                 RandomCrop(32, padding=4),
@@ -179,6 +178,7 @@ class CIFAR10DataModule(LightningDataModule):
         return loader
 
     def val_dataloader(self):
+        """val dataloader"""
         transforms = Compose(
             [
                 ToTensor(),
@@ -211,6 +211,7 @@ class CIFAR10DataModule(LightningDataModule):
         return loader
 
     def test_dataloader(self):
+        """test dataloader"""
         transforms = Compose(
             [
                 ToTensor(),
